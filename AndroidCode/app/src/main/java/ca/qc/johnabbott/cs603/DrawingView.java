@@ -14,7 +14,7 @@ public class DrawingView extends View {
     private Picture picture;
     private ToolBox toolbox;
     private Paint paint;
-    
+
     public DrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.picture = new Picture();
