@@ -1,0 +1,9 @@
+{
+  "name": "hello"
+, "version": "0.0.1"
+, "dependencies": {
+    "express": "latest",
+    "mongoose": "latest",
+    "mongoose-auto-increment": "latest"
+  }
+}
