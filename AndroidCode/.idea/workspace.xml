@@ -17,15 +17,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: ca.qc.johnabbott.cs603" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9905c24-4a1f-475a-bcd0-db8d9e5fc45d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Tools/CircleTool.java" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Tools/CircleTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/DrawingView.java" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/DrawingView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Tools/LineTool.java" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Tools/LineTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Tools/OvalTool.java" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Tools/OvalTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Tools/RectangleTool.java" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Tools/RectangleTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Tools/SquareTool.java" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Tools/SquareTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="f9905c24-4a1f-475a-bcd0-db8d9e5fc45d" name="Default" comment="" />
     <ignored path="drawAssignmentV2.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -60,7 +52,7 @@
       <file leaf-file-name="Picture.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Picture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47962382" vertical-offset="170" max-vertical-offset="714">
+            <state vertical-scroll-proportion="0.69279" vertical-offset="102" max-vertical-offset="714">
               <caret line="25" column="40" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="40" />
               <folding />
             </state>
@@ -1866,7 +1858,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Picture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47962382" vertical-offset="170" max-vertical-offset="714">
+        <state vertical-scroll-proportion="0.69279" vertical-offset="102" max-vertical-offset="714">
           <caret line="25" column="40" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="40" />
           <folding />
         </state>
