@@ -21,9 +21,6 @@ public class Square extends Shape{
 
     @Override
     public void draw(Paint paint, Canvas canvas) {
-        // reset any path effect
-        paint.setPathEffect(null);
-
         if(fillColor != Color.TRANSPARENT) {
             paint.setColor(fillColor);
             paint.setStyle(Paint.Style.FILL);
