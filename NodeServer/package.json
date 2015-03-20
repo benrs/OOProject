@@ -1,9 +1,11 @@
 {
-  "name": "hello"
+  "name": "OOPAssignment"
 , "version": "0.0.1"
 , "dependencies": {
     "express": "latest",
+    "express-session": "latest",
     "mongoose": "latest",
-    "mongoose-auto-increment": "latest"
+    "mongoose-auto-increment": "latest",
+    "handlebars": "latest"
   }
 }
