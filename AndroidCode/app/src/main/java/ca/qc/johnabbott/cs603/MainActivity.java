@@ -1,5 +1,6 @@
 package ca.qc.johnabbott.cs603;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.Dialog;
@@ -41,12 +42,20 @@ public class MainActivity extends Activity {
             case R.id.menu_menu:
                 showMenuDialog();
                 return true;
+            case R.id.Login:
+                showLoginDialog();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void showToolsDialog() {
         new ToolSettingsDialog(this, drawing.getToolBox());
+    }
+
+    private void showLoginDialog() {
+        Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(i);
     }
 
     private void showMenuDialog() {
