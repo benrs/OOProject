@@ -3,6 +3,10 @@ package ca.qc.johnabbott.cs603.Shapes;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by benjamin on 3/19/2015.
@@ -53,5 +57,22 @@ public class Square extends Shape{
         this.y1 = leftY;
         this.x2 = rightX;
         this.y2 = rightY;
+    }
+
+    public JSONObject JSONconvert() {
+        JSONObject anObject = new JSONObject();
+        try {
+            anObject.put("type","Square");
+            anObject.put("x1",this.x1);
+            anObject.put("x2",this.x2);
+            anObject.put("y1",this.y1);
+            anObject.put("y2",this.y2);
+            anObject.put("strokeColor", this.strokeColor);
+            anObject.put("fillColor",this.fillColor);
+            anObject.put("strokeWidth", this.strokeWidth);
+        } catch (JSONException e) {
+            Log.e("MYAPP", "unexpected JSON exception", e);
+        }
+        return anObject;
     }
 }

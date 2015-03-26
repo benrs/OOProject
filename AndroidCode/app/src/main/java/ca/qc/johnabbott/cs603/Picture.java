@@ -7,6 +7,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Picture {
     private List<Shape> shapes;
@@ -43,4 +48,13 @@ public class Picture {
     public void undo() { shapes.remove(shapes.size()-1); }
 
     public int amountOfShapes() { return shapes.size(); }
+
+    public JSONArray JSONconvert()
+    {
+      JSONArray obj = new JSONArray();
+      for (int i = 0;i < shapes.size();i++)
+          obj.put(shapes.get(i).JSONconvert());
+
+        return obj;
+    }
 }

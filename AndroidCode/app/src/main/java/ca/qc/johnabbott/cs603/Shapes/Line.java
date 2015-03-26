@@ -4,6 +4,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Line extends Shape {
     private float x1, x2, y1, y2;
@@ -27,5 +31,22 @@ public class Line extends Shape {
         path.moveTo(x1, y1);
         path.lineTo(x2, y2);
         canvas.drawPath(path, paint);
+    }
+
+    public JSONObject JSONconvert() {
+        JSONObject anObject = new JSONObject();
+        try {
+            anObject.put("type","Line");
+            anObject.put("x1",this.x1);
+            anObject.put("x2",this.x2);
+            anObject.put("y1",this.y1);
+            anObject.put("y2",this.y2);
+            anObject.put("strokeColor", this.strokeColor);
+            anObject.put("fillColor",this.fillColor);
+            anObject.put("strokeWidth", this.strokeWidth);
+        } catch (JSONException e) {
+            Log.e("MYAPP", "unexpected JSON exception", e);
+        }
+        return anObject;
     }
 }
