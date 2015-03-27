@@ -51,9 +51,9 @@ public class Picture {
 
     public JSONArray JSONconvert()
     {
-      JSONArray obj = new JSONArray();
-      for (int i = 0;i < shapes.size();i++)
+        JSONArray obj = new JSONArray();
+        for (int i = 0;i < shapes.size();i++)
           obj.put(shapes.get(i).JSONconvert());
-      return obj;
+        return obj;
     }
 }
