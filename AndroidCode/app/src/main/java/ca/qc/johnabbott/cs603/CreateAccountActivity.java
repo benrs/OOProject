@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-public class CreateAccountActivity extends Activity {
+public class CreateAccountActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
