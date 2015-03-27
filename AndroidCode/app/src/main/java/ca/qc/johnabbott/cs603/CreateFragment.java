@@ -42,7 +42,7 @@ public class CreateFragment extends Fragment {
 
     public String validateInfo(View theView){
         String returnErrors = "";
-        EditText name     = (EditText) theView.findViewById(R.id.createName);
+        EditText name     = (EditText) theView.findViewById(R.id.createUser);
         EditText email    = (EditText) theView.findViewById(R.id.createEmail);
         EditText password = (EditText) theView.findViewById(R.id.createPassword);
         String strName  = name.getText().toString();

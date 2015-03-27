@@ -44,14 +44,10 @@ public class LoginFragment extends Fragment {
 
     public String validateInfo(View theView){
         String returnErrors = "";
-        EditText email    = (EditText) theView.findViewById(R.id.loginEmail);
+        EditText email    = (EditText) theView.findViewById(R.id.loginUser);
         EditText password = (EditText) theView.findViewById(R.id.loginPassword);
         String strEmail = email.getText().toString();
         String strPass  = password.getText().toString();
-
-        if(!strEmail.matches(Environment.EMAIL_PATTERN)){
-            returnErrors += "Improper email\n";
-        }
 
         if(strEmail.isEmpty() || strPass.isEmpty()){
             returnErrors += "Fields cannot be empty\n";

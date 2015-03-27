@@ -2,5 +2,9 @@
 <resources>
     <item name="colorPrimary" type="color">#E53935</item>
     <item name="colorSecondary" type="color">#F44336</item>
+    <item name="colorSecDark" type="color">#D32F2F</item>
     <item name="colorWhite" type="color">#FFFFFF</item>
+    <item name="accent" type="color">#E57373</item>
+    <item name="text_primary" type="color">#C62828</item>
+    <item name="text_secondary" type="color">#C62828</item>
 </resources>

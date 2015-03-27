@@ -1,9 +1,9 @@
 package ca.qc.johnabbott.cs603;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Dialog;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +15,7 @@ import android.widget.Button;
     Author: Benjamin Barault
     Assignment: Extension of the drawing assignment
  */
-public class DrawActivity extends ActionBarActivity {
+public class DrawActivity extends Activity {
     private DrawingView drawing;
     private Dialog current;
 
@@ -35,7 +35,6 @@ public class DrawActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch(item.getItemId()){
             case R.id.menu_tools:
                 showToolsDialog();
@@ -43,17 +42,15 @@ public class DrawActivity extends ActionBarActivity {
             case R.id.menu_menu:
                 showMenuDialog();
                 return true;
+            case R.id.menu_signout:
+                signOut();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void showToolsDialog() {
         new ToolSettingsDialog(this, drawing.getToolBox());
-    }
-
-    private void showLoginDialog() {
-        Intent i = new Intent(getApplicationContext(),startupActivity.class);
-        startActivity(i);
     }
 
     private void showMenuDialog() {
@@ -90,5 +87,11 @@ public class DrawActivity extends ActionBarActivity {
         });
 
         current.show();
+    }
+
+    public void signOut(){
+        Intent login = new Intent(this, startupActivity.class);
+        this.startActivity(login);
+        this.finish();
     }
 }

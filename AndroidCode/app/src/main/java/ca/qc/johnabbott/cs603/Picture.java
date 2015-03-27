@@ -49,11 +49,20 @@ public class Picture {
 
     public int amountOfShapes() { return shapes.size(); }
 
-    public JSONArray JSONconvert()
+    public JSONObject JSONconvert()
     {
+        JSONObject root = new JSONObject();
         JSONArray obj = new JSONArray();
         for (int i = 0;i < shapes.size();i++)
           obj.put(shapes.get(i).JSONconvert());
-        return obj;
+
+        try {
+            root.put("list", obj);
+            root.put("size", this.amountOfShapes());
+            root.put("name", "ShapeBundle");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return root;
     }
 }
