@@ -22,3 +22,4 @@ process.on('uncaughtException', function(e) {
 });
 
 console.log(process.env.NODE_ENV  + ' server running at http://'+config.serverIP+':' + config.port);
+console.log("Database server: "+config.db);
