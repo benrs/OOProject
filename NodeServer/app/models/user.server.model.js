@@ -1,21 +1,24 @@
-var mongoose = require('../../config/mongoose.js');
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var autoIncrement = require('mongoose-auto-increment');
 
-var connection = mongoose();
-
-autoIncrement.initialize(connection);
+autoIncrement.initialize(mongoose);
 
 var UserSchema = new Schema({
 	email: {
 		type: String,
-		unique: true
+		unique: true,
+		required: true
 	},
 	username: {
 		type: String,
-		unique: true
+		unique: true,
+		required: true
 	},
-	password: String
+	password: {
+		type: String,
+		required: true
+	}
 });
 
 UserSchema.plugin(autoIncrement.plugin, 'User');

@@ -1,4 +1,4 @@
-var db    = require("../../config/mongoose.js")();
+var User = require("mongoose").model("User");
 var funcs = require("../../config/globalFunctions.js"); 
 
 exports.create = function(req, res, next){
@@ -6,14 +6,12 @@ exports.create = function(req, res, next){
 	var response = {};
 
 	if(!funcs.isUnDef(body.email) && !funcs.isUnDef(body.username) && !funcs.isUnDef(body.password)){
-		funcs.createNewUser(body.email, body.username, body.password, res);
+		var user = new User(body);
+		funcs.createNewUser(user, res, next);
 	}else{
 		response.error = "Invalid use of api";
 		res.json(response);
 	}
-}
-
-exports.list = function(req, res, next){
 }
 
 exports.userByID = function(req, res, next, id){
