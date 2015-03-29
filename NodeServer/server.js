@@ -9,4 +9,16 @@ var app = express();
 
 app.listen(config.port);
 
+process.on('exit', function () {
+	process.emit('cleanup');
+});
+
+process.on('SIGINT', function () {
+	process.exit(2);
+});
+
+process.on('uncaughtException', function(e) {
+	process.exit(99);
+});
+
 console.log(process.env.NODE_ENV  + ' server running at http://'+config.serverIP+':' + config.port);
