@@ -1,4 +1,4 @@
-var db    = require("../../config/dynamoDB.js")();
+var db    = require("../../config/mongoose.js")();
 var funcs = require("../../config/globalFunctions.js"); 
 
 exports.create = function(req, res, next){
