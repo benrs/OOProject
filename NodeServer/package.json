@@ -6,6 +6,7 @@
     "express-session": "latest",
     "express-handlebars": "latest",
     "body-parser": "latest",
-    "aws-sdk": "v2.1.20"
+    "mongoose": "latest",
+    "mongoose-auto-increment": "latest"
   }
 }
