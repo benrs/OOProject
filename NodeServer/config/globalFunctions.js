@@ -7,6 +7,7 @@ exports.isUnDef = function checkUndefined(variable){
 exports.createNewUser = function createUser(user, res, next){
 	var response = {};
 	user.save(function(err) {
+		console.log(err);
 		if(err){
 			switch(err.code){
 				case 11000:
