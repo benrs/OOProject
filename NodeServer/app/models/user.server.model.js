@@ -2,7 +2,7 @@ var mongoose = require('../../config/mongoose.js');
 var Schema = mongoose.Schema;
 var autoIncrement = require('mongoose-auto-increment');
 
-var connection = monogoose();
+var connection = mongoose();
 
 autoIncrement.initialize(connection);
 
