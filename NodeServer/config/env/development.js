@@ -5,5 +5,5 @@ var dbIP     = 'localhost';
 module.exports = {
 	port: port,
 	serverIP: serverIP,
-	db: "mongod://"+dbIP+"/picApp"
+	db: "mongodb://"+dbIP+"/picApp"
 }

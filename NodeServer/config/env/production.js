@@ -8,5 +8,5 @@ var dbPassword = 'barault6404';
 module.exports = {
 	port: port,
 	serverIP: serverIP,
-	db: "mongod://"+dbUser+":"+dbPassword+"@"+dbIP+":"+dbPort+"/picApp"
+	db: "mongodb://"+dbUser+":"+dbPassword+"@"+dbIP+":"+dbPort+"/picApp"
 }
