@@ -9,7 +9,7 @@ var serverLogging = function(req, res, next){
 
 module.exports = function(){
 	var app = express();
-	var hbs = exphbs.create({  });
+	var hbs = exphbs.create({});
 
 	// Setting up the handlebars engine
 	app.engine('handlebars', hbs.engine);
