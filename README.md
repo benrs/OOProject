@@ -12,6 +12,13 @@ Next you will want to do the following:
 npm install
 bower install
 ```
+Afterwards you can run the server by naviagting to the NodeServer/ directory and running:
+
+```
+node server.js
+```
+
+_NOTE:_ Depending on your OS you may have to run nodejs instead of node. Also if you want the server to run permanently (or until you cancel it) then look into forever or pm2 on https://npmjs.com
 
 ### Error Codes
 - 100 - As far as we know everything went smoothly
