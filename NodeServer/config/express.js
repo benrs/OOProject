@@ -25,7 +25,8 @@ module.exports = function(){
 	app.use(express.static('./public'));
 
 	// Including all of the routes that we need
-	require("../app/routes/index.server.routes.js")(app);
+	require('../app/routes/index.server.routes.js')(app);
 	require('../app/routes/users.server.routes.js')(app);
+	require('../app/routes/pictures.server.routes.js')(app);
 	return app;
 }
