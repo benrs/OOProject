@@ -9,3 +9,4 @@ Project for Object Oriented Programming class.
 - 500 - Something went wrong with your request
 - 600 - Token is either invalid or expired
 - 700 - Invalid use of our API
+- 800 - You gave us some invalid information
