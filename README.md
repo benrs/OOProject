@@ -2,7 +2,7 @@
 Project created by Benjamin-Marco Barault and Dylan Fernandes for our Object Oriented Programming class.
 
 ### How to set up the server
-First things first navigate to OOPAssignment/NodeServer/config/env and change both the development.js file and production.js file to your liking. By default development.js runs everything (the database and application server) on the same machine. You have to change production.js if you decided to turn it on.
+First things first navigate to OOPAssignment/NodeServer/config/env and change both the development.js file and production.js file to your liking. By default development.js runs everything (the database and application server) on the same machine. You have to change production.js if you decided to run the server in production mode.
 
 Next you will want to do the following:
 
