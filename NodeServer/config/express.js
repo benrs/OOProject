@@ -10,6 +10,7 @@ var serverLogging = function(req, res, next){
 module.exports = function(){
 	var app = express(); 
 	var oopRouter  = express.Router();
+	var mainRouter = express.Router();
 
 	// Setting up the default html engine
 	app.engine('html', require('ejs').renderFile);
@@ -31,8 +32,9 @@ module.exports = function(){
 	require('../app/routes/oop/index.server.routes.js')(oopRouter);
 	require('../app/routes/oop/users.server.routes.js')(oopRouter);
 	require('../app/routes/oop/pictures.server.routes.js')(oopRouter);
-	require('../app/routes/index.server.routes.js')(app);
+	require('../app/routes/index.server.routes.js')(mainRouter);
 
 	app.use(subdomain('oop', oopRouter));
+	app.use(subdomain('barault', mainRouter));
 	return app;
 }
