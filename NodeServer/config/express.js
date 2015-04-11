@@ -8,8 +8,7 @@ var serverLogging = function(req, res, next){
 }
 
 module.exports = function(){
-	var app = express();
-	var mainRouter = express.Router(); 
+	var app = express(); 
 	var oopRouter  = express.Router();
 
 	// Setting up the default html engine
@@ -29,9 +28,10 @@ module.exports = function(){
 	app.use(express.static('./bower_components/angular-material'));
 
 	// Including all of the routes that we need
-	require('../app/routes/index.server.routes.js')(oopRouter);
-	require('../app/routes/users.server.routes.js')(oopRouter);
-	require('../app/routes/pictures.server.routes.js')(oopRouter);
+	require('../app/routes/oop/index.server.routes.js')(oopRouter);
+	require('../app/routes/oop/users.server.routes.js')(oopRouter);
+	require('../app/routes/oop/pictures.server.routes.js')(oopRouter);
+	require('../app/routes/index.server.routes.js')(app);
 
 	app.use(subdomain('oop', oopRouter));
 	return app;

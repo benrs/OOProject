@@ -1,6 +1,6 @@
 var Token   = require("mongoose").model("Token");
 var Picture = require("mongoose").model("Picture");
-var funcs   = require("../../config/globalFunctions.js");
+var funcs   = require("../../../config/globalFunctions.js");
 
 // This is a middle ware function which fetches the appropriate
 // token. It will either pass the token forwards or let the user

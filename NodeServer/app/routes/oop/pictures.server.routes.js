@@ -1,4 +1,4 @@
-var pictures = require('../controllers/pictures.server.controller.js');
+var pictures = require('../../controllers/oop/pictures.server.controller.js');
 
 module.exports = function(app){
 	// Make sure everyone is using a valid token

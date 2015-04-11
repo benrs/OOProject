@@ -1,6 +1,6 @@
 var User   = require("mongoose").model("User");
 var Token  = require("mongoose").model("Token");
-var funcs  = require("../../config/globalFunctions.js");
+var funcs  = require("../../../config/globalFunctions.js");
 var bcrypt = require("bcrypt"); 
 
 exports.create = function(req, res, next){
