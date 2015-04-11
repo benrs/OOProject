@@ -35,6 +35,6 @@ module.exports = function(){
 	require('../app/routes/index.server.routes.js')(mainRouter);
 
 	app.use(subdomain('oop', oopRouter));
-	app.use(subdomain('/', mainRouter));
+	app.use(mainRouter);
 	return app;
 }
