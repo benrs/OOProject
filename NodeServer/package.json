@@ -4,10 +4,11 @@
 , "dependencies": {
     "express": "latest",
     "express-session": "latest",
-    "express-handlebars": "latest",
+    "express-subdomain": "latest",
     "body-parser": "latest",
     "mongoose": "latest",
     "mongoose-auto-increment": "latest",
-    "bcrypt": "latest"
+    "bcrypt": "latest",
+    "ejs": "latest"
   }
 }
