@@ -4,6 +4,7 @@ var Picture = require("mongoose").model("Picture");
 var db      = require("mongoose"); 
 
 // Code courtesy of stack overflow
+// It mimics php's range() function
 Array.range= function(a, b, step){
     var A= [];
     if(typeof a== 'number'){
@@ -115,6 +116,42 @@ exports.regenerateToken = function regenerateToken(token, res){
 			token.token = exports.generateRandomString(40);
 			token.date  = new Date(new Date().getTime()+1000*60*10);
 			exports.generateToken(token, res);
+		}
+	});
+}
+
+exports.validateToken = function validateToken(token, req, res, next){
+	Token.find({ token: token }).exec(function(err, result){
+		if(err){
+			response.error = "Token is invalid or expired";
+			response.protocolCode = 600;
+			res.json(response);
+		}else{
+			var token = result[0];
+			var expiry   = new Date(token.expiry).getTime()/1000;
+			var rightNow = new Date().getTime()/1000;
+
+			if(expiry > rightNow){
+				req.token = token;
+				exports.prolongToken(req, res, next);
+			}else{
+				response.error     = "Token is invalid or expired";
+				response.protocolCode = 600;
+				res.json(response);
+			}
+		}
+	});
+}
+
+exports.prolongToken = function prolongToken(req, res, next){
+	var newExpiry  = new Date(new Date().getTime()+1000*60*10);
+	Token.update({ token: req.token, expiry: newExpiry }).exec(function(err, result){
+		if(err){
+			response.error = "Token is invalid or expired";
+			response.protocolCode = 600;
+			res.json(response);
+		}else{
+			next();
 		}
 	});
 }

@@ -10,26 +10,7 @@ exports.validateToken = function(req, res, next){
 	var response = {};
 
 	if(!funcs.isUnDef(body.token)){
-		Token.find({ token: body.token }).exec(function(err, result){
-			if(err){
-				response.error = "Token is invalid or expired";
-				response.protocolCode = 600;
-				res.json(response);
-			}else{
-				var token = result[0];
-				var expiry   = new Date(token.expiry).getTime()/1000;
-				var rightNow = new Date().getTime()/1000;
-
-				if(expiry > rightNow){
-					req.token = token;
-					next();
-				}else{
-					response.error     = "Token is invalid or expired";
-					response.protocolCode = 600;
-					res.json(response);
-				}
-			}
-		});
+		funcs.validateToken(body.token, req, res, next);
 	}else{
 		response.error = "Invalid use of api";
 		response.protocolCode = 700;
