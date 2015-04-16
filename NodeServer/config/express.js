@@ -37,10 +37,10 @@ module.exports = function(){
 		require('../app/routes/oop/pictures.server.routes.js')(oopRouter);
 		require('../app/routes/index.server.routes.js')(mainRouter);
 	}else{
+		// Used to test a specific subdomain
 		require('../app/routes/oop/index.server.routes.js')(mainRouter);
 		require('../app/routes/oop/users.server.routes.js')(mainRouter);
 		require('../app/routes/oop/pictures.server.routes.js')(mainRouter);
-		require('../app/routes/index.server.routes.js')(mainRouter);
 	}
 
 	app.use(subdomain('oop', oopRouter));
