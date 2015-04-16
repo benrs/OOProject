@@ -1,3 +1,5 @@
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 var express    = require('express');
 var subdomain  = require('express-subdomain'); 
 var bodyParser = require('body-parser');
@@ -29,10 +31,17 @@ module.exports = function(){
 	app.use(express.static('./bower_components/angular-material'));
 
 	// Including all of the routes that we need
-	require('../app/routes/oop/index.server.routes.js')(oopRouter);
-	require('../app/routes/oop/users.server.routes.js')(oopRouter);
-	require('../app/routes/oop/pictures.server.routes.js')(oopRouter);
-	require('../app/routes/index.server.routes.js')(mainRouter);
+	if(process.env.NODE_ENV == "production"){
+		require('../app/routes/oop/index.server.routes.js')(oopRouter);
+		require('../app/routes/oop/users.server.routes.js')(oopRouter);
+		require('../app/routes/oop/pictures.server.routes.js')(oopRouter);
+		require('../app/routes/index.server.routes.js')(mainRouter);
+	}else{
+		require('../app/routes/oop/index.server.routes.js')(mainRouter);
+		require('../app/routes/oop/users.server.routes.js')(mainRouter);
+		require('../app/routes/oop/pictures.server.routes.js')(mainRouter);
+		require('../app/routes/index.server.routes.js')(mainRouter);
+	}
 
 	app.use(subdomain('oop', oopRouter));
 	app.use(mainRouter);
