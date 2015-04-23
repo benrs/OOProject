@@ -7,6 +7,7 @@ exports.create = function(req, res, next){
 	var body = req.body;
 	var response = {};
 
+	console.log(req);
 	console.log(body);
 
 	if(!funcs.isUnDef(body.email) && !funcs.isUnDef(body.username) && !funcs.isUnDef(body.password)){
