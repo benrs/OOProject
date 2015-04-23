@@ -5,6 +5,7 @@ var subdomain  = require('express-subdomain');
 var bodyParser = require('body-parser');
 
 var serverLogging = function(req, res, next){
+	console.log(req.body);
 	console.log(req.method, req.url);
 	next();
 }
