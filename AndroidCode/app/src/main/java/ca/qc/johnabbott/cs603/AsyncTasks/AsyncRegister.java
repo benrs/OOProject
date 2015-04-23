@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import org.apache.http.client.HttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -17,6 +19,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.nio.charset.Charset;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -40,8 +43,10 @@ public class AsyncRegister extends AsyncTask<String, Integer, String> {
     @Override
     protected String doInBackground(String... params) {
         String urlParams = "";
+        byte[] postData;
         if(params.length > 2) {
-            urlParams = "name=" + params[0] + "&email=" + params[1] + "&password="+params[2];
+            urlParams = "username=" + params[0] + "&email=" + params[1] + "&password="+params[2];
+            postData = urlParams.getBytes(Charset.forName("UTF-8"));
         }else{
             return "Insufficient data";
         }
@@ -55,7 +60,7 @@ public class AsyncRegister extends AsyncTask<String, Integer, String> {
 
             //send the POST out
             PrintWriter out = new PrintWriter(conn.getOutputStream());
-            out.print(urlParams);
+            out.print(postData);
             out.close();
 
             int statusCode = conn.getResponseCode();
@@ -68,9 +73,16 @@ public class AsyncRegister extends AsyncTask<String, Integer, String> {
                 while((line = reader.readLine()) != null){
                     sb.append(line + "\n");
                 }
-
-                System.out.println(sb);
                 reader.close();
+
+                JSONObject result;
+                result = new JSONObject(sb.toString());
+                int code = result.getInt("protocolCode");
+                if(code != 100){
+                    return result.getString("error");
+                }else{
+                    return result.getString("success");
+                }
             }else{
                 return "Something went wrong";
             }
@@ -83,9 +95,10 @@ public class AsyncRegister extends AsyncTask<String, Integer, String> {
         } catch (IOException e) {
             e.printStackTrace();
             return "Something went wrong";
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return "Something went wrong";
         }
-
-        return "Successfully created account";
     }
 
     @Override
