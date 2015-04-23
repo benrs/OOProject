@@ -9,9 +9,6 @@ exports.validateToken = function(req, res, next){
 	var body = req.body;
 	var response = {};
 
-	console.log(body);
-	console.log("here");
-
 	if(!funcs.isUnDef(body.token)){
 		funcs.validateToken(body.token, req, res, next);
 	}else{

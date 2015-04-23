@@ -44,7 +44,7 @@ public class AsyncRegister extends AsyncTask<String, Integer, String> {
             return "Insufficient data";
         }
         try {
-            URL url = new URL("http://www.oop.barault.ca/api/createUser");
+            URL url = new URL("http://www.oop.barault.ca/api/users/createUser");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setDoInput(true);
