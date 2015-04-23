@@ -62,6 +62,7 @@ exports.createNewUser = function createUser(user, res, next){
 			response.protocolCode = 100;
 		}
 		res.json(response);
+		res.end();
 	});
 }
 
@@ -92,6 +93,7 @@ exports.generateToken = function newToken(token, res){
 					response.error = "Something went wrong with your request";
 					response.protocolCode = 500;
 					res.json(response);
+					res.end();
 				break
 			}
 		}else{
@@ -99,6 +101,7 @@ exports.generateToken = function newToken(token, res){
 			response.success = "Successfully logged in";
 			response.protocolCode = 100;
 			res.json(response);
+			res.end();
 		}
 	});
 }
@@ -112,6 +115,7 @@ exports.regenerateToken = function regenerateToken(token, res){
 			response.error = "Something went wrong with your request";
 			response.protocolCode = 500;
 			res.json(response);
+			res.end();
 		}else{
 			token.token = exports.generateRandomString(40);
 			token.date  = new Date(new Date().getTime()+1000*60*10);
@@ -126,6 +130,7 @@ exports.validateToken = function validateToken(token, req, res, next){
 			response.error = "Token is invalid or expired";
 			response.protocolCode = 600;
 			res.json(response);
+			res.end();
 		}else{
 			var token = result[0];
 			var expiry   = new Date(token.expiry).getTime()/1000;
@@ -138,6 +143,7 @@ exports.validateToken = function validateToken(token, req, res, next){
 				response.error     = "Token is invalid or expired";
 				response.protocolCode = 600;
 				res.json(response);
+				res.end();
 			}
 		}
 	});
@@ -150,6 +156,7 @@ exports.prolongToken = function prolongToken(req, res, next){
 			response.error = "Token is invalid or expired";
 			response.protocolCode = 600;
 			res.json(response);
+			res.end();
 		}else{
 			next();
 		}
@@ -167,6 +174,7 @@ exports.findPicByID = function findPic(picID, currentUser, mustOwn, callback, re
 			response.error = "Something went wrong";
 			response.protocolCode = 500;
 			res.json(response);
+			res.end();
 		}else{
 			if(result.length <= 0){
 				callback(result, res);
@@ -195,6 +203,7 @@ exports.getOnePictureCB = function getOnePictureCB(pic, res){
 	}
 
 	res.json(response);
+	res.end();
 }
 
 exports.deletePicCB = function deletePicCB(pic, res){
@@ -204,10 +213,12 @@ exports.deletePicCB = function deletePicCB(pic, res){
 		response.error = "Picture does not belong to user";
 		response.protocolCode = 400;
 		res.json(response);
+		res.end();
 	}else if(pic.length <= 0){
 		response.error = "Picture does not exist";
 		response.protocolCode = 300;
 		res.json(response);
+		res.end();
 	}else{
 		// Delete the picture
 		Picture.remove({ _id: pic._id }).exec(function(err, result){
@@ -219,6 +230,7 @@ exports.deletePicCB = function deletePicCB(pic, res){
 				response.protocolCode = 100;
 			}
 			res.json(response);
+			res.end();
 		});
 	}
 }

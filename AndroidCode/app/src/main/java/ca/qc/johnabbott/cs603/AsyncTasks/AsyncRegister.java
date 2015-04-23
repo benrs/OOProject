@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -35,31 +36,23 @@ public class AsyncRegister extends AsyncTask<String, Integer, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        String urlParams = "";
-        byte[] postData;
-        if(params.length > 2) {
-            urlParams = "username=" + params[0] + "&email=" + params[1] + "&password="+params[2];
-            postData = urlParams.getBytes(Charset.forName("UTF-8"));
-        }else{
-            return "Insufficient data";
-        }
         try {
             URL url = new URL("http://www.oop.barault.ca/api/users/createUser");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setDoInput(true);
             conn.setDoOutput(true);
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setChunkedStreamingMode(0);
+            conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("charset", "utf-8");
 
             //send the POST out
-            DataOutputStream out = new DataOutputStream(conn.getOutputStream());
-            out.write(postData);
-            out.close();
+            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
+            out.write("{ \"email\": \""+params[1]+"\", \"username\": \""+params[0]+"\", \"password\": \""+params[2]+"\" }");
+            out.flush();
 
             int statusCode = conn.getResponseCode();
             if(statusCode == 200){
-                System.out.println(conn.getResponseMessage());
                 BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
                 StringBuilder sb = new StringBuilder();

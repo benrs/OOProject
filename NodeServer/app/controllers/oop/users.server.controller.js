@@ -17,6 +17,7 @@ exports.create = function(req, res, next){
 		response.error = "Invalid use of api";
 		response.protocolCode = 700;
 		res.json(response);
+		res.end();
 	}
 }
 
@@ -43,11 +44,13 @@ exports.login = function(req, res){
 				response.error = "Invalid username or password";
 				response.protocolCode = 800;
 				res.json(response);
+				res.end();
 			}
 		});
 	}else{
 		response.error = "Invalid use of api";
 		response.protocolCode = 700;
 		res.json(response);
+		res.end();
 	}
 }

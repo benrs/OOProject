@@ -15,6 +15,7 @@ exports.validateToken = function(req, res, next){
 		response.error = "Invalid use of api";
 		response.protocolCode = 700;
 		res.json(response);
+		res.end();
 	}
 }
 
@@ -31,6 +32,7 @@ exports.getPictures = function(req, res, next){
 		response.success  = "Successfully got pictures";
 		response.protocolCode = 100;
 		res.json(response);
+		res.end();
 	});
 }
 
@@ -49,6 +51,7 @@ exports.getOnePicture = function(req, res, next){
 		response.error = "Invalid use of api";
 		response.protocolCode = 700;
 		res.json(response);
+		res.end();
 	}
 }
 
@@ -76,11 +79,13 @@ exports.createNewPic = function(req, res, next){
 				response.protocolCode = 100;
 			}
 			res.json(response);
+			res.end();
 		});
 	}else{
 		response.error = "Invalid use of api";
 		response.protocolCode = 700;
 		res.json(response);
+		res.end();
 	}
 }
 
@@ -98,5 +103,6 @@ exports.deletePic = function(req, res, next){
 		response.error = "Invalid use of api";
 		response.protocolCode = 700;
 		res.json(response);
+		res.end();
 	}
 }
