@@ -1,20 +1,14 @@
 package ca.qc.johnabbott.cs603.AsyncTasks;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Toast;
-
-import org.apache.http.client.HttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -31,7 +25,6 @@ import ca.qc.johnabbott.cs603.R;
  */
 public class AsyncRegister extends AsyncTask<String, Integer, String> {
     AsynDone callback;
-    Toast showMessage;
     View mainView;
 
     public AsyncRegister(View root, AsynDone callback){
@@ -57,10 +50,11 @@ public class AsyncRegister extends AsyncTask<String, Integer, String> {
             conn.setDoInput(true);
             conn.setDoOutput(true);
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty("charset", "utf-8");
 
             //send the POST out
-            PrintWriter out = new PrintWriter(conn.getOutputStream());
-            out.print(postData);
+            DataOutputStream out = new DataOutputStream(conn.getOutputStream());
+            out.write(postData);
             out.close();
 
             int statusCode = conn.getResponseCode();
