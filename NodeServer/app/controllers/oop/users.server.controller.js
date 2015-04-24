@@ -7,9 +7,13 @@ exports.create = function(req, res, next){
 	var body = req.body;
 	var response = {};
 
+	console.log(body);
+
 	if(!funcs.isUnDef(body.email) && !funcs.isUnDef(body.username) && !funcs.isUnDef(body.password)){
 		var salt = bcrypt.genSaltSync(10);
 		body.password = bcrypt.hashSync(body.password, salt);
+
+		console.log("A");
 
 		var user = new User(body);
 		funcs.createNewUser(user, res, next);

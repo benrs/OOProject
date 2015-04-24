@@ -40,7 +40,12 @@ exports.isUnDef = function checkUndefined(variable){
 // Creates a new user and handles appropriate error cases
 exports.createNewUser = function createUser(user, res, next){
 	var response = {};
+
+	console.log("B");
+
 	user.save(function(err) {
+		console.log("C");
+
 		if(err){
 			switch(err.code){
 				case 11000:
