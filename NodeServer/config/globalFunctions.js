@@ -41,8 +41,6 @@ exports.isUnDef = function checkUndefined(variable){
 exports.createNewUser = function createUser(user, res, next){
 	var response = {};
 
-	console.log("B");
-
 	user.save(function(err) {
 		console.log("C");
 

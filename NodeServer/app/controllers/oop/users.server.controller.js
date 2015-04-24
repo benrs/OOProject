@@ -13,8 +13,6 @@ exports.create = function(req, res, next){
 		var salt = bcrypt.genSaltSync(10);
 		body.password = bcrypt.hashSync(body.password, salt);
 
-		console.log("A");
-
 		var user = new User(body);
 		funcs.createNewUser(user, res, next);
 	}else{
