@@ -1,6 +1,9 @@
 var port = 8080;
+var serverIP = 'localhost';
+var dbIP     = 'localhost';
 
 module.exports = {
 	port: port,
-	db: 'mongodb://localhost/picApp'
+	serverIP: serverIP,
+	db: "mongodb://"+dbIP+"/picApp"
 }

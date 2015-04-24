@@ -26,8 +26,9 @@ proguard/
 *.log
 
 # Node Files
-node_modules/
-bower/
+**/node_modules/*
+**/bower/*
+**/bower_modules/*
 
 # Intellij IDEA (see https://intellij-support.jetbrains.com/entries/23393067)
 **/.idea/*

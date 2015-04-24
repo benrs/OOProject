@@ -1,5 +1,7 @@
-var express = require('express');
-var exphbs  = require('express-handlebars');
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+var express    = require('express');
+var subdomain  = require('express-subdomain'); 
 var bodyParser = require('body-parser');
 
 var serverLogging = function(req, res, next){
@@ -8,13 +10,13 @@ var serverLogging = function(req, res, next){
 }
 
 module.exports = function(){
-	var app = express();
-	var hbs = exphbs.create({  });
+	var app = express(); 
+	var oopRouter  = express.Router();
+	var mainRouter = express.Router();
 
-	// Setting up the handlebars engine
-	app.engine('handlebars', hbs.engine);
-	app.set('views', './app/views')
-	app.set('view engine', 'handlebars');
+	// Setting up the default html engine
+	app.engine('html', require('ejs').renderFile);
+	app.set('views', './app/views');
 
 	// Initializing some middleware
 	app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,9 +25,25 @@ module.exports = function(){
 
 	// Letting express know where our static file are located
 	app.use(express.static('./public'));
+	app.use(express.static('./bower_components/angular'));
+	app.use(express.static('./bower_components/angular-animate'));
+	app.use(express.static('./bower_components/angular-aria'));
+	app.use(express.static('./bower_components/angular-material'));
 
 	// Including all of the routes that we need
-	require("../app/routes/index.server.routes.js")(app);
-	require('../app/routes/users.server.routes.js')(app);
+	if(process.env.NODE_ENV == "production"){
+		require('../app/routes/oop/index.server.routes.js')(oopRouter);
+		require('../app/routes/oop/users.server.routes.js')(oopRouter);
+		require('../app/routes/oop/pictures.server.routes.js')(oopRouter);
+		require('../app/routes/index.server.routes.js')(mainRouter);
+	}else{
+		// Used to test a specific subdomain
+		require('../app/routes/oop/index.server.routes.js')(mainRouter);
+		require('../app/routes/oop/users.server.routes.js')(mainRouter);
+		require('../app/routes/oop/pictures.server.routes.js')(mainRouter);
+	}
+
+	app.use(subdomain('oop', oopRouter));
+	app.use(mainRouter);
 	return app;
 }
