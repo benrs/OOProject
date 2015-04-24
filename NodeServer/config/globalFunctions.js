@@ -42,8 +42,6 @@ exports.createNewUser = function createUser(user, res, next){
 	var response = {};
 
 	user.save(function(err) {
-		console.log("C");
-
 		if(err){
 			switch(err.code){
 				case 11000:
