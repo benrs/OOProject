@@ -27,21 +27,26 @@ exports.login = function(req, res){
 
 	if(!funcs.isUnDef(body.username) && !funcs.isUnDef(body.password)){
 		User.find({ username: body.username }).exec(function(err, result){
-			console.log(err);
-			console.log(result);
-			result = result[0];
-			var match = bcrypt.compareSync(body.password, result.password);
-			if(match){
-				var date = new Date(new Date().getTime()+1000*60*10);
-				var tmp  = funcs.generateRandomString(40);
+			if(result.length <= 0){
+				result = result[0];
+				var match = bcrypt.compareSync(body.password, result.password);
+				if(match){
+					var date = new Date(new Date().getTime()+1000*60*10);
+					var tmp  = funcs.generateRandomString(40);
 
-				var token = new Token({
-					UID: result._id,
-					token: tmp,
-					expiry: date
-				});
+					var token = new Token({
+						UID: result._id,
+						token: tmp,
+						expiry: date
+					});
 
-				funcs.generateToken(token, res);
+					funcs.generateToken(token, res);
+				}else{
+					response.error = "Invalid username or password";
+					response.protocolCode = 800;
+					res.json(response);
+					res.end();
+				}
 			}else{
 				response.error = "Invalid username or password";
 				response.protocolCode = 800;
