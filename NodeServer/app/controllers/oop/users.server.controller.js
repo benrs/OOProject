@@ -27,6 +27,8 @@ exports.login = function(req, res){
 
 	if(!funcs.isUnDef(body.username) && !funcs.isUnDef(body.password)){
 		User.find({ username: body.username }).exec(function(err, result){
+			console.log(err);
+			console.log(result);
 			result = result[0];
 			var match = bcrypt.compareSync(body.password, result.password);
 			if(match){
