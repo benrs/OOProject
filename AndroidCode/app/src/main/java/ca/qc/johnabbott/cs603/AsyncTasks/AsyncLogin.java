@@ -1,12 +1,13 @@
 package ca.qc.johnabbott.cs603.AsyncTasks;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -14,21 +15,17 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.nio.charset.Charset;
 
-import javax.net.ssl.HttpsURLConnection;
-
-import ca.qc.johnabbott.cs603.DrawActivity;
 import ca.qc.johnabbott.cs603.R;
 
 /**
- * Created by benjamin on 4/22/2015.
+ * Created by dylanfernandes on 15-04-24.
  */
-        public class AsyncRegister extends AsyncTask<String, Integer, String> {
+public class AsyncLogin extends AsyncTask<String, Integer, String> {
     AsynDone callback;
     View mainView;
 
-    public AsyncRegister(View root, AsynDone callback){
+    public AsyncLogin(View root, AsynDone callback){
         mainView = root;
         mainView.findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
         this.callback = callback;
@@ -37,7 +34,7 @@ import ca.qc.johnabbott.cs603.R;
     @Override
     protected String doInBackground(String... params) {
         try {
-            URL url = new URL("http://www.oop.barault.ca/api/users/createUser");
+            URL url = new URL("http://www.oop.barault.ca/api/users/login");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setDoInput(true);
@@ -48,10 +45,11 @@ import ca.qc.johnabbott.cs603.R;
 
             //send the POST out
             OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
-            out.write("{ \"email\": \""+params[1]+"\", \"username\": \""+params[0]+"\", \"password\": \""+params[2]+"\" }");
+            out.write("{ \"username\": \""+params[0]+"\", \"password\": \""+params[1]+"\" }");
             out.flush();
 
             int statusCode = conn.getResponseCode();
+            Log.v("STATUS CODE",Integer.toString(statusCode));
             if(statusCode == 200){
                 BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
@@ -68,6 +66,7 @@ import ca.qc.johnabbott.cs603.R;
                 if(code != 100){
                     return result.getString("error");
                 }else{
+                    Log.d("Succ",result.getString("success"));
                     return result.getString("success");
                 }
             }else{
