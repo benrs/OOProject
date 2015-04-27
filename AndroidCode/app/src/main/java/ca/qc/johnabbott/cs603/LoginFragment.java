@@ -19,7 +19,7 @@ import ca.qc.johnabbott.cs603.Globals.Environment;
  * Created by benjamin on 3/27/2015.
  */
 public class LoginFragment extends Fragment implements AsynDone{
-    private boolean good = false;
+    private boolean loggingin = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final AsynDone callback = this;
@@ -37,9 +37,12 @@ public class LoginFragment extends Fragment implements AsynDone{
                     EditText password = (EditText) rootView.findViewById(R.id.loginPassword);
                     String strUsername = username.getText().toString();
                     String strPass = password.getText().toString();
-                    Toast displaySuccess = Toast.makeText(rootContext, "", Toast.LENGTH_SHORT);
-                    AsyncLogin register = new AsyncLogin(rootView, callback);
-                    register.execute(strUsername, strPass);
+
+                    if(!loggingin) {
+                        loggingin = true;
+                        AsyncLogin login = new AsyncLogin(rootView, callback);
+                        login.execute(strUsername, strPass);
+                    }
                 }else{
                     Toast displayErrors = Toast.makeText(rootContext, validated, Toast.LENGTH_SHORT);
                     displayErrors.show();
@@ -69,18 +72,14 @@ public class LoginFragment extends Fragment implements AsynDone{
     }
     @Override
     public void done(String message){
-        //this.registering = false;
+        loggingin = false;
         this.getView().findViewById(R.id.loadingPanel).setVisibility(View.INVISIBLE);
         Toast displayStatus = Toast.makeText(this.getView().getContext(), message, Toast.LENGTH_SHORT);
         if(message.equals("Successfully logged in"))
         {
-            this.good = true;
             Intent drawAct = new Intent(this.getView().getContext(), DrawActivity.class);
             startActivity(drawAct);
             getActivity().finish();
-        }
-        else {
-            this.good = false;
         }
         displayStatus.show();
     }
