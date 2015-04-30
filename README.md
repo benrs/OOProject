@@ -12,7 +12,7 @@ Next you will want to do the following:
 npm install
 bower install
 ```
-Afterwards you can run the server by naviagting to the NodeServer/ directory and running:
+Afterwards you can run the server by navigating to the NodeServer/ directory and running:
 
 ```
 node server.js
