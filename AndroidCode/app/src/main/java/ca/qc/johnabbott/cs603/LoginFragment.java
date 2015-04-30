@@ -77,7 +77,7 @@ public class LoginFragment extends Fragment implements AsynDone{
         Toast displayStatus = Toast.makeText(this.getView().getContext(), message, Toast.LENGTH_SHORT);
         if(message.equals("Successfully logged in"))
         {
-            Intent drawAct = new Intent(this.getView().getContext(), DrawActivity.class);
+            Intent drawAct = new Intent(this.getView().getContext(), PictureListActivity.class);
             startActivity(drawAct);
             getActivity().finish();
         }

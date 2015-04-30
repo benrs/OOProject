@@ -16,6 +16,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
+import ca.qc.johnabbott.cs603.Globals.Environment;
 import ca.qc.johnabbott.cs603.R;
 
 /**
@@ -66,7 +67,7 @@ public class AsyncLogin extends AsyncTask<String, Integer, String> {
                 if(code != 100){
                     return result.getString("error");
                 }else{
-                    Log.d("Succ",result.getString("success"));
+                    Environment.setToken(result.getString("token"));
                     return result.getString("success");
                 }
             }else{
