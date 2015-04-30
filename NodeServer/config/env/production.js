@@ -1,6 +1,6 @@
 var port = 8080;
 var serverIP   = 'localhost';
-var dbIP       = '54.186.35.160';
+var dbIP       = '54.200.0.50';
 var dbPort     = '27017';
 
 module.exports = {

@@ -42,7 +42,6 @@ public class CreateFragment extends Fragment implements AsynDone {
 
                     if(!registering){
                         registering = true;
-                        Toast displaySuccess = Toast.makeText(rootContext, "", Toast.LENGTH_SHORT);
                         AsyncRegister register = new AsyncRegister(rootView, callback);
                         register.execute(strName, strEmail, strPass);
                     }
