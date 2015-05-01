@@ -112,4 +112,9 @@ public class DrawActivity extends Activity implements AsynDone {
         Toast displayStatus = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         displayStatus.show();
     }
+
+    @Override
+    public void populateView(String jsonArray){
+        
+    }
 }

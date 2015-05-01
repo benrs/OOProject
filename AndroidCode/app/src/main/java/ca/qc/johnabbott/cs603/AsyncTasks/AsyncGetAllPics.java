@@ -24,11 +24,9 @@ import ca.qc.johnabbott.cs603.R;
  */
 public class AsyncGetAllPics extends AsyncTask<String, Integer, String> {
     AsynDone callback;
-    //View mainView;
+    private String jsonArray;
 
     public AsyncGetAllPics(AsynDone callback){
-        //mainView = root;
-        //mainView.findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
         this.callback = callback;
     }
 
@@ -66,8 +64,8 @@ public class AsyncGetAllPics extends AsyncTask<String, Integer, String> {
                 if(code != 100){
                     return result.getString("error");
                 }else{
-                    Log.d("Succ",result.getString("success"));
-                    return result.getString("pictures");
+                    jsonArray = result.getString("pictures");
+                    return result.getString("success");
                 }
             }else{
                 return "Something went wrong";
@@ -89,7 +87,7 @@ public class AsyncGetAllPics extends AsyncTask<String, Integer, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        //mainView.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
         callback.done(result);
+        callback.populateView(jsonArray);
     }
 }

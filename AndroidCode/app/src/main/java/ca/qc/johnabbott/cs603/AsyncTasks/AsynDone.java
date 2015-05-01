@@ -5,4 +5,5 @@ package ca.qc.johnabbott.cs603.AsyncTasks;
  */
 public interface AsynDone {
     public void done(String message);
+    public void populateView(String jsonArray);
 }

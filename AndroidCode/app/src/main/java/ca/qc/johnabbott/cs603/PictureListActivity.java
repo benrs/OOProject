@@ -10,6 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 import ca.qc.johnabbott.cs603.AsyncTasks.AsynDone;
 import ca.qc.johnabbott.cs603.AsyncTasks.AsyncGetAllPics;
 import ca.qc.johnabbott.cs603.Globals.Environment;
@@ -17,14 +23,15 @@ import ca.qc.johnabbott.cs603.Globals.Environment;
 
 public class PictureListActivity extends Activity implements AsynDone {
     final AsynDone callback = this;
-    ListView lv;
+    private ListView lv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_list);
         AsyncGetAllPics pics = new AsyncGetAllPics(callback);
         pics.execute();
-        ListView lv = (ListView) findViewById(R.id.listView);
+        lv = (ListView) findViewById(R.id.listView);
     }
 
 
@@ -51,10 +58,35 @@ public class PictureListActivity extends Activity implements AsynDone {
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void done(String message){
         Toast displayStatus = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         displayStatus.show();
-        lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,new String[] {"a","b","c"}));
+    }
+
+    @Override
+    public void populateView(String jsonArray){
+        ArrayList<String> nameArray = new ArrayList<String>();
+        String name;
+        try {
+            JSONArray ar = new JSONArray(jsonArray);
+            for (int i = 0;i < ar.length();i++)
+            {
+                JSONObject JSONCursor = new JSONObject(ar.get(i).toString());
+                String pictureString = JSONCursor.getString("encoded_pic");
+                Log.d("Test", pictureString);
+                JSONObject pictureObject = new JSONObject(pictureString);
+                name = pictureObject.getString("name");
+                nameArray.add(name);
+            }
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nameArray);
+        lv.setAdapter(adapter);
     }
 }

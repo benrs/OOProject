@@ -83,4 +83,9 @@ public class LoginFragment extends Fragment implements AsynDone{
         }
         displayStatus.show();
     }
+
+    @Override
+    public void populateView(String jsonArray){
+
+    }
 }

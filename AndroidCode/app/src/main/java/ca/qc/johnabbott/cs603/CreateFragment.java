@@ -86,4 +86,9 @@ public class CreateFragment extends Fragment implements AsynDone {
         Toast displayStatus = Toast.makeText(this.getView().getContext(), message, Toast.LENGTH_SHORT);
         displayStatus.show();
     }
+
+    @Override
+    public void populateView(String jsonArray){
+
+    }
 }
