@@ -9,16 +9,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import ca.qc.johnabbott.cs603.AsyncTasks.AsynDone;
+import ca.qc.johnabbott.cs603.AsyncTasks.AsyncSave;
+import ca.qc.johnabbott.cs603.Globals.Environment;
 
 /*
     Date: March 12th, 2015
     Author: Benjamin Barault
     Assignment: Extension of the drawing assignment
  */
-public class DrawActivity extends Activity {
+public class DrawActivity extends Activity implements AsynDone {
     private DrawingView drawing;
     private Dialog current;
-
+    final AsynDone callback = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +66,7 @@ public class DrawActivity extends Activity {
 
         Button buttonErase = (Button) current.findViewById(R.id.buttonErase);
         Button buttonUndo  = (Button) current.findViewById(R.id.buttonUndo);
+        Button buttonSave  = (Button) current.findViewById(R.id.buttonSave);
 
         if(drawing.getPicture().amountOfShapes() <= 0){
             buttonUndo.setClickable(false);
@@ -86,6 +92,14 @@ public class DrawActivity extends Activity {
             }
         });
 
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Log.d("TEST",drawing.getPicture().JSONconvert().toString());
+                AsyncSave save = new AsyncSave(view, callback);
+                save.execute(Environment.getToken(),drawing.getPicture().JSONconvert().toString());
+            }
+        });
         current.show();
     }
 
@@ -93,5 +107,12 @@ public class DrawActivity extends Activity {
         Intent login = new Intent(this, startupActivity.class);
         this.startActivity(login);
         this.finish();
+    }
+
+    @Override
+    public void done(String message){
+        //this.findViewById(R.id.loadingPanel).setVisibility(View.INVISIBLE);
+        Toast displayStatus = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        displayStatus.show();
     }
 }
