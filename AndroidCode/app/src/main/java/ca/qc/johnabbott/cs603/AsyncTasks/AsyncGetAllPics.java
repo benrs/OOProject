@@ -24,11 +24,11 @@ import ca.qc.johnabbott.cs603.R;
  */
 public class AsyncGetAllPics extends AsyncTask<String, Integer, String> {
     AsynDone callback;
-    View mainView;
+    //View mainView;
 
-    public AsyncGetAllPics(View root, AsynDone callback){
-        mainView = root;
-        mainView.findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+    public AsyncGetAllPics(AsynDone callback){
+        //mainView = root;
+        //mainView.findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
         this.callback = callback;
     }
 
@@ -89,7 +89,7 @@ public class AsyncGetAllPics extends AsyncTask<String, Integer, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        mainView.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+        //mainView.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
         callback.done(result);
     }
 }

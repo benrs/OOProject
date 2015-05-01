@@ -6,16 +6,25 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import ca.qc.johnabbott.cs603.AsyncTasks.AsynDone;
+import ca.qc.johnabbott.cs603.AsyncTasks.AsyncGetAllPics;
 import ca.qc.johnabbott.cs603.Globals.Environment;
 
 
-public class PictureListActivity extends Activity {
-
+public class PictureListActivity extends Activity implements AsynDone {
+    final AsynDone callback = this;
+    ListView lv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_list);
+        AsyncGetAllPics pics = new AsyncGetAllPics(callback);
+        pics.execute();
+        ListView lv = (ListView) findViewById(R.id.listView);
     }
 
 
@@ -41,5 +50,12 @@ public class PictureListActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void done(String message){
+        Toast displayStatus = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        displayStatus.show();
+       // lv.setAdapter(new ArrayAdapter<String>(this, R.layout.activity_picture_list,new String[] {"a","b","c"}));
+
     }
 }
