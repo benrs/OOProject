@@ -85,7 +85,6 @@ public class DrawActivity extends Activity implements AsynDone {
         buttonErase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("TEST",drawing.getPicture().JSONconvert().toString());
                 drawing.erase();
                 drawing.invalidate();
                 current.dismiss();
@@ -95,7 +94,6 @@ public class DrawActivity extends Activity implements AsynDone {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Log.d("TEST",drawing.getPicture().JSONconvert().toString());
                 AsyncSave save = new AsyncSave(view, callback);
                 save.execute(Environment.getToken(),drawing.getPicture().JSONconvert().toString());
             }
@@ -111,7 +109,6 @@ public class DrawActivity extends Activity implements AsynDone {
 
     @Override
     public void done(String message){
-        //this.findViewById(R.id.loadingPanel).setVisibility(View.INVISIBLE);
         Toast displayStatus = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         displayStatus.show();
     }

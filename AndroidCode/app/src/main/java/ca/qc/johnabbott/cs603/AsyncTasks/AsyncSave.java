@@ -28,7 +28,6 @@ public class AsyncSave extends AsyncTask<String, Integer, String> {
 
     public AsyncSave(View root, AsynDone callback){
         mainView = root;
-        //mainView.findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
         this.callback = callback;
     }
 
@@ -46,7 +45,7 @@ public class AsyncSave extends AsyncTask<String, Integer, String> {
 
             //send the POST out
             OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
-            out.write("{ \"token\": \""+params[0]+"\", \"encoded_pic\": \""+params[1]+"\" }");
+            out.write("{ \"token\": \""+params[0]+"\", \"encoded_pic\": \""+params[1].replace("\"", "'")+"\" }");
             out.flush();
 
             int statusCode = conn.getResponseCode();
@@ -67,31 +66,28 @@ public class AsyncSave extends AsyncTask<String, Integer, String> {
                 if(code != 100){
                     return result.getString("error");
                 }else{
-                    Environment.setToken(result.getString("token"));
-                    Log.d("test",Environment.getToken());
                     return result.getString("success");
                 }
             }else{
-                return "Something went wrong";
+                return "Error code "+statusCode;
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            return "Something went wrong";
+            return "URL made incorrectly";
         } catch (ProtocolException e) {
             e.printStackTrace();
-            return "Something went wrong";
+            return "Wrong protocol";
         } catch (IOException e) {
             e.printStackTrace();
-            return "Something went wrong";
+            return "Input output exception";
         } catch (JSONException e) {
             e.printStackTrace();
-            return "Something went wrong";
+            return "JSON Parsing error";
         }
     }
 
     @Override
     protected void onPostExecute(String result) {
-        //mainView.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
         callback.done(result);
     }
 }
