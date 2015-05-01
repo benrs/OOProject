@@ -94,6 +94,7 @@ public class DrawActivity extends Activity implements AsynDone {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //new saveDialog(current.setContentView(););
                 AsyncSave save = new AsyncSave(view, callback);
                 save.execute(Environment.getToken(),drawing.getPicture().JSONconvert().toString());
             }
@@ -115,6 +116,6 @@ public class DrawActivity extends Activity implements AsynDone {
 
     @Override
     public void populateView(String jsonArray){
-        
+
     }
 }
