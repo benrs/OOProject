@@ -1,7 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="ca.qc.johnabbott.cs603.PictureListActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_create"
-         app:showAsAction="never" />
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <item android:id="@+id/action_create" android:title="@string/action_create"
+         app:showAsAction="always" />
 </menu>

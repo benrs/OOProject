@@ -1,6 +1,7 @@
 package ca.qc.johnabbott.cs603;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Dialog;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import ca.qc.johnabbott.cs603.AsyncTasks.AsynDone;
@@ -23,7 +25,10 @@ import ca.qc.johnabbott.cs603.Globals.Environment;
 public class DrawActivity extends Activity implements AsynDone {
     private DrawingView drawing;
     private Dialog current;
-    final AsynDone callback = this;
+    private Dialog name;
+
+    private final AsynDone callback = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +64,8 @@ public class DrawActivity extends Activity implements AsynDone {
     }
 
     private void showMenuDialog() {
+        final Context drawAct = this;
+
         current = new Dialog(this);
         current.setContentView(R.layout.dialog_menu);
         current.setTitle("Menu");
@@ -94,9 +101,44 @@ public class DrawActivity extends Activity implements AsynDone {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //new saveDialog(current.setContentView(););
-                AsyncSave save = new AsyncSave(view, callback);
-                save.execute(Environment.getToken(),drawing.getPicture().JSONconvert().toString());
+                final Dialog chooseName = new Dialog(drawAct);
+                final View thisView = view;
+                chooseName.setContentView(R.layout.dialog_save);
+                chooseName.setTitle("Choose Name");
+                chooseName.setCanceledOnTouchOutside(true);
+
+                Button saveName   = (Button) chooseName.findViewById(R.id.btnSave);
+                Button cancelName = (Button) chooseName.findViewById(R.id.btnCancel);
+                final TextView picNameView  = (TextView) chooseName.findViewById(R.id.txtPicName);
+
+                saveName.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String picName = picNameView.getEditableText().toString();
+                        if(!picName.isEmpty()) {
+                            drawing.getPicture().setName(picName);
+                            AsyncSave save = new AsyncSave(thisView, callback);
+                            save.execute(Environment.getToken(), drawing.getPicture().JSONconvert().toString());
+
+                            chooseName.cancel();
+                            current.cancel();
+                            ((Activity) drawAct).finishActivity(1);
+                            ((Activity) drawAct).finish();
+                        }else{
+                            Toast errorMessage = Toast.makeText(thisView.getContext(), "Name cannot be empty", Toast.LENGTH_SHORT);
+                            errorMessage.show();
+                        }
+                    }
+                });
+
+                cancelName.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        chooseName.cancel();
+                    }
+                });
+
+                chooseName.show();
             }
         });
         current.show();
