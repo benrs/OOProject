@@ -76,16 +76,16 @@ public class AsyncLogin extends AsyncTask<String, Integer, String> {
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            return "Something went wrong";
+            return "Malformed URL";
         } catch (ProtocolException e) {
             e.printStackTrace();
-            return "Something went wrong";
+            return "Protocol Error";
         } catch (IOException e) {
             e.printStackTrace();
-            return "Something went wrong";
+            return "Input output exception";
         } catch (JSONException e) {
             e.printStackTrace();
-            return "Something went wrong";
+            return "JSON Parse error";
         }
     }
 

@@ -55,7 +55,6 @@ public class PictureListActivity extends Activity implements AsynDone {
     public void done(String message){
         Toast displayStatus = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         displayStatus.show();
-       // lv.setAdapter(new ArrayAdapter<String>(this, R.layout.activity_picture_list,new String[] {"a","b","c"}));
-
+        lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,new String[] {"a","b","c"}));
     }
 }
