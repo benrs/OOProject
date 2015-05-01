@@ -46,7 +46,7 @@ public class AsyncGetAllPics extends AsyncTask<String, Integer, String> {
 
             //send the POST out
             OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
-            out.write("{ \"token\": \""+ Environment.EMAIL_PATTERN+"\" }");
+            out.write("{ \"token\": \""+ Environment.getToken()+"\" }");
             out.flush();
 
             int statusCode = conn.getResponseCode();
@@ -67,7 +67,7 @@ public class AsyncGetAllPics extends AsyncTask<String, Integer, String> {
                     return result.getString("error");
                 }else{
                     Log.d("Succ",result.getString("success"));
-                    return result.getString("success");
+                    return result.getString("pictures");
                 }
             }else{
                 return "Something went wrong";

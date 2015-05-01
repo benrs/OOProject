@@ -68,6 +68,7 @@ public class AsyncLogin extends AsyncTask<String, Integer, String> {
                     return result.getString("error");
                 }else{
                     Environment.setToken(result.getString("token"));
+                    Log.d("test",Environment.getToken());
                     return result.getString("success");
                 }
             }else{
