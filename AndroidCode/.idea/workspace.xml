@@ -36,11 +36,7 @@
     <bookmark url="file://$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Picture.java" line="59" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9905c24-4a1f-475a-bcd0-db8d9e5fc45d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/AsyncTasks/AsyncSave.java" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/AsyncTasks/AsyncSave.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/DrawActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/DrawActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="f9905c24-4a1f-475a-bcd0-db8d9e5fc45d" name="Default" comment="" />
     <ignored path="drawAssignmentV2.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -72,10 +68,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AsyncSave.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AsyncSave.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/AsyncTasks/AsyncSave.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.70087975" vertical-offset="611" max-vertical-offset="1411">
+            <state vertical-scroll-proportion="0.0" vertical-offset="611" max-vertical-offset="1411">
               <caret line="67" column="22" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
               <folding>
                 <element signature="e#3054#3055#0" expanded="true" />
@@ -97,10 +93,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Picture.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Picture.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Picture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="560" max-vertical-offset="1003">
+            <state vertical-scroll-proportion="1.8973607" vertical-offset="101" max-vertical-offset="1003">
               <caret line="59" column="22" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
               <folding />
             </state>
@@ -1536,7 +1532,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1983,6 +1979,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/AsyncTasks/AsyncSave.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="611" max-vertical-offset="1411">
+          <caret line="67" column="22" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
+          <folding>
+            <element signature="e#3054#3055#0" expanded="true" />
+            <element signature="e#3091#3092#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/DrawActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1308" max-vertical-offset="1649">
+          <caret line="110" column="37" selection-start-line="110" selection-start-column="37" selection-end-line="110" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/DrawingView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="118" max-vertical-offset="1020">
@@ -1995,28 +2010,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/Picture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="560" max-vertical-offset="1003">
+        <state vertical-scroll-proportion="1.8973607" vertical-offset="101" max-vertical-offset="1003">
           <caret line="59" column="22" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/DrawActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1308" max-vertical-offset="1649">
-          <caret line="110" column="37" selection-start-line="110" selection-start-column="37" selection-end-line="110" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ca/qc/johnabbott/cs603/AsyncTasks/AsyncSave.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70087975" vertical-offset="611" max-vertical-offset="1411">
-          <caret line="67" column="22" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
-          <folding>
-            <element signature="e#3054#3055#0" expanded="true" />
-            <element signature="e#3091#3092#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
