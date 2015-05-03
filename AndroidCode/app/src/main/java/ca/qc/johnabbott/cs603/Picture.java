@@ -17,6 +17,7 @@ public class Picture {
     private List<Shape> shapes;
     private Shape rubberBand;
     private Paint previewPaint;
+    private String pictureName;
 
     public Picture() {
         super();
@@ -49,6 +50,10 @@ public class Picture {
 
     public int amountOfShapes() { return shapes.size(); }
 
+    public void setName(String name){
+        pictureName = name;
+    }
+
     public JSONObject JSONconvert()
     {
         JSONObject root = new JSONObject();
@@ -59,7 +64,7 @@ public class Picture {
         try {
             root.put("list", obj);
             root.put("size", this.amountOfShapes());
-            root.put("name", "ShapeBundle");
+            root.put("name", pictureName);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -22,16 +24,22 @@ import ca.qc.johnabbott.cs603.Globals.Environment;
 
 
 public class PictureListActivity extends Activity implements AsynDone {
-    final AsynDone callback = this;
+    final private AsynDone callback = this;
+
+    private int CREATED_IMAGE = 1;
+
+    private ProgressBar loader;
     private ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_list);
-        AsyncGetAllPics pics = new AsyncGetAllPics(callback);
-        pics.execute();
+
+        loader = (ProgressBar) findViewById(R.id.loadingPanel);
         lv = (ListView) findViewById(R.id.listView);
+
+        loadPictures();
     }
 
 
@@ -50,19 +58,24 @@ public class PictureListActivity extends Activity implements AsynDone {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_create) {
             Intent newPicture = new Intent(this.getBaseContext(), DrawActivity.class);
-            startActivity(newPicture);
+            startActivityForResult(newPicture, CREATED_IMAGE);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    public void loadPictures(){
+        loader.setVisibility(View.VISIBLE);
+        AsyncGetAllPics pics = new AsyncGetAllPics(callback);
+        pics.execute();
+    }
+
     @Override
     public void done(String message){
-        Toast displayStatus = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-        displayStatus.show();
+        // Don't do anything for now
     }
 
     @Override
@@ -75,7 +88,6 @@ public class PictureListActivity extends Activity implements AsynDone {
             {
                 JSONObject JSONCursor = new JSONObject(ar.get(i).toString());
                 String pictureString = JSONCursor.getString("encoded_pic");
-                Log.d("Test", pictureString);
                 JSONObject pictureObject = new JSONObject(pictureString);
                 name = pictureObject.getString("name");
                 nameArray.add(name);
@@ -88,5 +100,13 @@ public class PictureListActivity extends Activity implements AsynDone {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nameArray);
         lv.setAdapter(adapter);
+        loader.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CREATED_IMAGE) {
+            loadPictures();
+        }
     }
 }
