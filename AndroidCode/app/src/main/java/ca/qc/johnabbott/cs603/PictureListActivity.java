@@ -7,9 +7,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -17,10 +19,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ca.qc.johnabbott.cs603.AsyncTasks.AsynDone;
 import ca.qc.johnabbott.cs603.AsyncTasks.AsyncGetAllPics;
 import ca.qc.johnabbott.cs603.Globals.Environment;
+import ca.qc.johnabbott.cs603.Shapes.Shape;
 
 
 public class PictureListActivity extends Activity implements AsynDone {
@@ -30,6 +34,7 @@ public class PictureListActivity extends Activity implements AsynDone {
 
     private ProgressBar loader;
     private ListView lv;
+    ArrayList<PictureInfo> pictureArray = new ArrayList<PictureInfo>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +85,9 @@ public class PictureListActivity extends Activity implements AsynDone {
 
     @Override
     public void populateView(String jsonArray){
-        ArrayList<String> nameArray = new ArrayList<String>();
         String name;
+        String shapeList;
+        int numShapes;
         try {
             JSONArray ar = new JSONArray(jsonArray);
             for (int i = 0;i < ar.length();i++)
@@ -90,16 +96,19 @@ public class PictureListActivity extends Activity implements AsynDone {
                 String pictureString = JSONCursor.getString("encoded_pic");
                 JSONObject pictureObject = new JSONObject(pictureString);
                 name = pictureObject.getString("name");
-                nameArray.add(name);
+                numShapes = Integer.parseInt(pictureObject.getString("size"));
+
+                pictureArray.add(new PictureInfo(name,numShapes));
             }
         }
         catch (JSONException e)
         {
             e.printStackTrace();
         }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nameArray);
+        ArrayAdapter<PictureInfo> adapter = new MyListAdapter();
         lv.setAdapter(adapter);
+       // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nameArray);
+       // lv.setAdapter(adapter);
         loader.setVisibility(View.INVISIBLE);
     }
 
@@ -107,6 +116,34 @@ public class PictureListActivity extends Activity implements AsynDone {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CREATED_IMAGE) {
             loadPictures();
+        }
+    }
+    private class MyListAdapter extends ArrayAdapter<PictureInfo>
+    {
+        public MyListAdapter()
+        {
+            super(PictureListActivity.this,R.layout.item_view,pictureArray);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            //make sure they is a view to work with
+            View itemView = convertView;
+            if(itemView == null)
+            {
+                itemView = getLayoutInflater().inflate(R.layout.item_view,parent,false);
+            }
+            //find the picture
+            PictureInfo currentPic = pictureArray.get(position);
+
+            //fill the view
+            TextView txtName= (TextView)itemView.findViewById(R.id.lv_txtName);
+            txtName.setText(currentPic.getPicName());
+            TextView txtNum = (TextView)itemView.findViewById(R.id.lv_txtNum);
+            txtNum.setText(Integer.toString(currentPic.getPicNum()));
+
+            return itemView;
+           // return super.getView(position, convertView, parent);
         }
     }
 }
