@@ -19,12 +19,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import ca.qc.johnabbott.cs603.AsyncTasks.AsynDone;
 import ca.qc.johnabbott.cs603.AsyncTasks.AsyncGetAllPics;
 import ca.qc.johnabbott.cs603.Globals.Environment;
+import ca.qc.johnabbott.cs603.Shapes.Circle;
+import ca.qc.johnabbott.cs603.Shapes.Line;
+import ca.qc.johnabbott.cs603.Shapes.Oval;
+import ca.qc.johnabbott.cs603.Shapes.Rectangle;
 import ca.qc.johnabbott.cs603.Shapes.Shape;
+import ca.qc.johnabbott.cs603.Shapes.Square;
 
 
 public class PictureListActivity extends Activity implements AsynDone {
@@ -86,7 +92,7 @@ public class PictureListActivity extends Activity implements AsynDone {
     @Override
     public void populateView(String jsonArray){
         String name;
-        String shapeList;
+        List<Shape> shapeList = new LinkedList<Shape>();
         int numShapes;
         try {
             JSONArray ar = new JSONArray(jsonArray);
@@ -97,7 +103,46 @@ public class PictureListActivity extends Activity implements AsynDone {
                 JSONObject pictureObject = new JSONObject(pictureString);
                 name = pictureObject.getString("name");
                 numShapes = Integer.parseInt(pictureObject.getString("size"));
-
+                JSONArray shapes = new JSONArray(pictureObject.getString("list"));
+                for(int c =0;c<shapes.length();c++)
+                {
+                    JSONObject JSONShapeCursor =  new JSONObject(shapes.get(c).toString());
+                    String shapeType = JSONShapeCursor.getString("type");
+                    float x1 = Float.parseFloat(JSONShapeCursor.getString("x1"));
+                    float x2 = Float.parseFloat(JSONShapeCursor.getString("x2"));
+                    float y1 = Float.parseFloat(JSONShapeCursor.getString("y1"));
+                    float y2 = Float.parseFloat(JSONShapeCursor.getString("y2"));
+                    int strokeColor = Integer.parseInt(JSONShapeCursor.getString("strokeColor"));
+                    int strokeWidth = Integer.parseInt(JSONShapeCursor.getString("strokeWidth"));
+                    int fillColor;
+                    switch (shapeType)
+                    {
+                        case "Rectangle":
+                            fillColor = Integer.parseInt(JSONShapeCursor.getString("fillColor"));
+                            shapeList.add(new Rectangle(x1,x2,y1,y2,strokeColor,strokeWidth,fillColor));
+                            Log.d("SHAPE","Recatangle");
+                            break;
+                        case "Line":
+                            shapeList.add(new Line(x1,x2,y1,y2,strokeColor,strokeWidth));
+                            Log.d("SHAPE","Line");
+                            break;
+                        case "Square":
+                            fillColor = Integer.parseInt(JSONShapeCursor.getString("fillColor"));
+                            shapeList.add(new Square(x1,x2,y1,y2,strokeColor,strokeWidth,fillColor));
+                            Log.d("SHAPE","Sqaure");
+                            break;
+                        case "Oval":
+                            fillColor = Integer.parseInt(JSONShapeCursor.getString("fillColor"));
+                            shapeList.add(new Oval(x1,x2,y1,y2,strokeColor,strokeWidth,fillColor));
+                            Log.d("SHAPE","Oval");
+                            break;
+                        case "Circle":
+                            fillColor = Integer.parseInt(JSONShapeCursor.getString("fillColor"));
+                            shapeList.add(new Circle(x1,x2,y1,y2,strokeColor,strokeWidth,fillColor));
+                            Log.d("SHAPE","Circle");
+                            break;
+                    }
+                }
                 pictureArray.add(new PictureInfo(name,numShapes));
             }
         }
