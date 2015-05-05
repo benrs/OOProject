@@ -1,11 +1,8 @@
 package ca.qc.johnabbott.cs603;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +43,7 @@ public class PictureListActivity extends Activity implements AsynDone {
 
     private ProgressBar loader;
     private ListView lv;
+    private PreviewImageView preview;
     ArrayList<PictureInfo> pictureArray = new ArrayList<PictureInfo>();
     String JSONPic;
 
@@ -179,6 +176,7 @@ public class PictureListActivity extends Activity implements AsynDone {
             super(PictureListActivity.this,R.layout.item_view,pictureArray);
         }
 
+        @SuppressLint("WrongViewCast")
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             //make sure they is a view to work with
@@ -195,11 +193,15 @@ public class PictureListActivity extends Activity implements AsynDone {
             txtName.setText(currentPic.getPicName());
             TextView txtNum = (TextView)itemView.findViewById(R.id.lv_txtNum);
             txtNum.setText(Integer.toString(currentPic.getPicNum()));
-            ImageView image = (ImageView)itemView.findViewById(R.id.Iv_shape);
+            preview = (PreviewImageView)itemView.findViewById(R.id.piv_preview);
+            List<Shape> picShapes= currentPic.getShapes();
+            for(Shape shape : picShapes)
+                preview.addShape(shape);
+            preview.invalidate();
             //image.setImageBitmap(currentPic.getPicture());
 
             //image.setImageBitmap(thePic);
-            image.setImageDrawable(new BitmapDrawable(getResources(), currentPic.getPicture()));
+            //image.setImageDrawable(new BitmapDrawable(getResources(), currentPic.getPicture()));
             return itemView;
            // return super.getView(position, convertView, parent);
         }

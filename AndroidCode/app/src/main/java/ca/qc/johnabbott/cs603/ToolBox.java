@@ -6,6 +6,7 @@ import android.graphics.Color;
 
 public class ToolBox {
     private DrawingView drawing;
+    private PreviewImageView preview;
     private Tool currentTool;
     private int strokeWidth;
     private int strokeColor;
@@ -14,6 +15,14 @@ public class ToolBox {
     public ToolBox(DrawingView drawing) {
         super();
         this.drawing = drawing;
+        this.strokeWidth = 2;
+        this.strokeColor = Color.BLACK;
+        this.fillColor = Color.TRANSPARENT;
+    }
+
+    public ToolBox(PreviewImageView preview) {
+        super();
+        this.preview = preview;
         this.strokeWidth = 2;
         this.strokeColor = Color.BLACK;
         this.fillColor = Color.TRANSPARENT;
