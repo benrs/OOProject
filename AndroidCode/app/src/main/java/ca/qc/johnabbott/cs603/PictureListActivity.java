@@ -2,13 +2,20 @@ package ca.qc.johnabbott.cs603;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -41,6 +48,7 @@ public class PictureListActivity extends Activity implements AsynDone {
     private ProgressBar loader;
     private ListView lv;
     ArrayList<PictureInfo> pictureArray = new ArrayList<PictureInfo>();
+    String JSONPic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,7 @@ public class PictureListActivity extends Activity implements AsynDone {
         lv = (ListView) findViewById(R.id.listView);
 
         loadPictures();
+        registerClickCallback();
     }
 
 
@@ -92,12 +101,12 @@ public class PictureListActivity extends Activity implements AsynDone {
     @Override
     public void populateView(String jsonArray){
         String name;
-        List<Shape> shapeList = new LinkedList<Shape>();
         int numShapes;
         try {
             JSONArray ar = new JSONArray(jsonArray);
             for (int i = 0;i < ar.length();i++)
             {
+                List<Shape> shapeList = new LinkedList<Shape>();
                 JSONObject JSONCursor = new JSONObject(ar.get(i).toString());
                 String pictureString = JSONCursor.getString("encoded_pic");
                 JSONObject pictureObject = new JSONObject(pictureString);
@@ -143,7 +152,7 @@ public class PictureListActivity extends Activity implements AsynDone {
                             break;
                     }
                 }
-                pictureArray.add(new PictureInfo(name,numShapes));
+                pictureArray.add(new PictureInfo(name,numShapes,shapeList));
             }
         }
         catch (JSONException e)
@@ -186,9 +195,27 @@ public class PictureListActivity extends Activity implements AsynDone {
             txtName.setText(currentPic.getPicName());
             TextView txtNum = (TextView)itemView.findViewById(R.id.lv_txtNum);
             txtNum.setText(Integer.toString(currentPic.getPicNum()));
+            ImageView image = (ImageView)itemView.findViewById(R.id.Iv_shape);
+            //image.setImageBitmap(currentPic.getPicture());
 
+            //image.setImageBitmap(thePic);
+            image.setImageDrawable(new BitmapDrawable(getResources(), currentPic.getPicture()));
             return itemView;
            // return super.getView(position, convertView, parent);
         }
+    }
+
+    private void registerClickCallback(){
+        ListView list = (ListView)findViewById(R.id.listView);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
+            PictureInfo clickedPic = pictureArray.get(position);
+                Intent draw = new Intent(PictureListActivity.this,DrawActivity.class);
+                Environment.setPicturesArray(pictureArray);
+                draw.putExtra("picPosition",position);
+                startActivity(draw);
+            }
+        });
     }
 }

@@ -13,9 +13,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ca.qc.johnabbott.cs603.AsyncTasks.AsynDone;
 import ca.qc.johnabbott.cs603.AsyncTasks.AsyncSave;
 import ca.qc.johnabbott.cs603.Globals.Environment;
+import ca.qc.johnabbott.cs603.Shapes.Shape;
 
 /*
     Date: March 12th, 2015
@@ -34,6 +38,14 @@ public class DrawActivity extends Activity implements AsynDone {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw);
         drawing = (DrawingView)this.findViewById(R.id.drawing_view);
+        if(this.getIntent().hasExtra("picPosition"))
+        {
+            PictureInfo aPic = Environment.getPicture(this.getIntent().getIntExtra("picPosition",2));
+            List<Shape> picShapes= aPic.getShapes();
+            drawing.erase();
+            for(Shape shape : picShapes)
+                drawing.addShape(shape);
+        }
     }
 
     @Override

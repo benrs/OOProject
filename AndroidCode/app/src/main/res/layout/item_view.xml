@@ -28,4 +28,13 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/lv_txtNum"
         android:layout_toStartOf="@+id/lv_txtNum" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/Iv_shape"
+        android:layout_toLeftOf="@+id/textView"
+        android:layout_below="@+id/lv_txtName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

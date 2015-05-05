@@ -1,5 +1,17 @@
 package ca.qc.johnabbott.cs603;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.util.Log;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 import ca.qc.johnabbott.cs603.Shapes.Shape;
@@ -46,5 +58,20 @@ public class PictureInfo {
 
     public void setPicNum(int picNum) {
         this.picNum = picNum;
+    }
+
+    public Bitmap getPicture()
+    {
+        //Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+        Bitmap thePic = Bitmap.createBitmap(50,50,Bitmap.Config.RGB_565);
+        //Bitmap thePic = new BitmapFactory.decodeFile();
+        Canvas canvas = new Canvas(thePic);
+        Paint paint = new Paint();
+        paint.setColor(Color.BLUE);
+        paint.setAntiAlias(true);
+        paint.setStrokeWidth(5);
+        for(Shape shape : shapes)
+            shape.draw(paint, canvas);
+        return thePic;
     }
 }
