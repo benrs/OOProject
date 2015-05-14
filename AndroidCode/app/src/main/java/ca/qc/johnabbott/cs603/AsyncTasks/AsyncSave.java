@@ -16,8 +16,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-import ca.qc.johnabbott.cs603.Globals.Environment;
-import ca.qc.johnabbott.cs603.R;
+import ca.qc.johnabbott.cs603.Interfaces.AsynDone;
 
 /**
  * Created by dylanfernandes on 15-04-30.

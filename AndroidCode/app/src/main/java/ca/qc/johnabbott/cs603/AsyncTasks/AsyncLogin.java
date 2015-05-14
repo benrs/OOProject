@@ -17,6 +17,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 
 import ca.qc.johnabbott.cs603.Globals.Environment;
+import ca.qc.johnabbott.cs603.Interfaces.AsynDone;
 import ca.qc.johnabbott.cs603.R;
 
 /**

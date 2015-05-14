@@ -2,7 +2,7 @@ package ca.qc.johnabbott.cs603.Tools;
 
 import android.graphics.Color;
 
-import ca.qc.johnabbott.cs603.ToolBox;
+import ca.qc.johnabbott.cs603.Controllers.ToolBox;
 import ca.qc.johnabbott.cs603.Shapes.Line;
 
 public class LineTool extends RectangleBasedTool {

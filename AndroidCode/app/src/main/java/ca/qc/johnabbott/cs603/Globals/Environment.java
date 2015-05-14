@@ -2,7 +2,7 @@ package ca.qc.johnabbott.cs603.Globals;
 
 import java.util.ArrayList;
 
-import ca.qc.johnabbott.cs603.PictureInfo;
+import ca.qc.johnabbott.cs603.Structures.PictureInfo;
 
 /**
  * Created by benjamin on 3/27/2015.

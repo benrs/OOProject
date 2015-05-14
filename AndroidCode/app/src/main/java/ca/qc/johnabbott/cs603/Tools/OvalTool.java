@@ -3,7 +3,7 @@ package ca.qc.johnabbott.cs603.Tools;
 import android.graphics.Color;
 
 import ca.qc.johnabbott.cs603.Shapes.Oval;
-import ca.qc.johnabbott.cs603.ToolBox;
+import ca.qc.johnabbott.cs603.Controllers.ToolBox;
 
 /**
  * Created by benjamin on 3/8/2015.

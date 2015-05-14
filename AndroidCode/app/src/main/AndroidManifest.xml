@@ -9,7 +9,7 @@
         android:icon="@drawable/ic_launcher"
         android:theme="@style/PicTappTheme" >
         <activity
-            android:name=".startupActivity"
+            android:name=".Activities.startupActivity"
             android:label="@string/app_name"
             android:theme="@style/PicTappTheme.NoActionBar" >
             <intent-filter>
@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DrawActivity"
+            android:name=".Activities.DrawActivity"
             android:label="PicTapp"
             android:theme="@style/PicTappTheme" >
             <intent-filter>
@@ -27,11 +27,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PictureListActivity"
+            android:name=".Activities.PictureListActivity"
             android:label="@string/title_activity_picture_list"
             android:theme="@style/PicTappTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.PICLIST" />
+                <category android:name="android.intent.category.PARENT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.PreviewActivity"
+            android:label="Preview"
+            android:theme="@style/PicTappTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.PICVIEW" />
                 <category android:name="android.intent.category.PARENT" />
             </intent-filter>
         </activity>

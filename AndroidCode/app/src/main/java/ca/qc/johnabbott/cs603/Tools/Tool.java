@@ -1,6 +1,6 @@
 package ca.qc.johnabbott.cs603.Tools;
 
-import ca.qc.johnabbott.cs603.ToolBox;
+import ca.qc.johnabbott.cs603.Controllers.ToolBox;
 import android.view.MotionEvent;
 
 public abstract class Tool {

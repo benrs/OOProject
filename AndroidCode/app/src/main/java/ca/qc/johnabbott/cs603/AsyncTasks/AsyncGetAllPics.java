@@ -1,8 +1,6 @@
 package ca.qc.johnabbott.cs603.AsyncTasks;
 
 import android.os.AsyncTask;
-import android.util.Log;
-import android.view.View;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,7 +15,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 
 import ca.qc.johnabbott.cs603.Globals.Environment;
-import ca.qc.johnabbott.cs603.R;
+import ca.qc.johnabbott.cs603.Interfaces.AsynDone;
 
 /**
  * Created by dylanfernandes on 15-04-30.
