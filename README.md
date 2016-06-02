@@ -30,4 +30,4 @@ _NOTE:_ Depending on your OS you may have to run nodejs instead of node. Also if
 - 700 - Invalid use of our API
 - 800 - You gave us some invalid information
 
-_NOTE:_ This is the final version of the code, I may end up working on it some more if I get bored or have the time. This project was also meant for a class, so do not expect too much from it.
+_NOTE:_ This is the final version of the code, I may end up working on it some more if I get bored or have the time.
